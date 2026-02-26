@@ -1,0 +1,26 @@
+schemaVersion: v0.2
+prepare:
+  steps:
+    - command: sudo n lts
+    - command: npm install
+test:
+  steps: []
+run:
+  service:
+    steps:
+      - command: sudo n lts
+      - command: npm run dev -- --host --port 4321
+    healthEndpoint: http://localhost:4321/
+    plan: 8
+    replicas: 1
+    network:
+      ports:
+        - port: 3000
+          isPublic: false
+        - port: 4321
+          isPublic: false
+      paths:
+        - port: 4321
+          path: /
+    env: {}
+    baseImage: ubuntu-24.04

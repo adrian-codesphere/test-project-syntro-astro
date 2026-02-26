@@ -17,4 +17,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  server: {
+    allowedHosts: ['1544164-3000.dev.5.codesphere.com']
+  }
 });
